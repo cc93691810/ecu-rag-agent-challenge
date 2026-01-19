@@ -1,0 +1,10 @@
+[MASTER]
+init-hook='import sys; sys.path.append("."); sys.path.append("./src")'
+
+[MESSAGES CONTROL]
+disable=
+    missing-module-docstring,  # 禁用模块文档字符串警告
+    import-error               # 禁用导入错误警告
+
+[FORMAT]
+max-line-length=130  # 增加到 120

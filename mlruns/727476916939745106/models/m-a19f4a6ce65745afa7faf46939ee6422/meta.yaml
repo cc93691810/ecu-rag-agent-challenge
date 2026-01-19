@@ -1,0 +1,10 @@
+artifact_location: file:///C:/cc/AlexLearning/AIdemos/ECUagent/ecu_agent/mlruns/727476916939745106/models/m-a19f4a6ce65745afa7faf46939ee6422/artifacts
+creation_timestamp: 1768848546387
+experiment_id: '727476916939745106'
+last_updated_timestamp: 1768848548318
+model_id: m-a19f4a6ce65745afa7faf46939ee6422
+model_type: null
+name: ecu_rag_model
+source_run_id: e9f28ed67451426abd761ecd782b4b76
+status: 2
+status_message: null

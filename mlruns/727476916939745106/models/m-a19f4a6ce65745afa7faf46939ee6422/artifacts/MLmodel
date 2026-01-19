@@ -1,0 +1,19 @@
+artifact_path: file:///C:/cc/AlexLearning/AIdemos/ECUagent/ecu_agent/mlruns/727476916939745106/models/m-a19f4a6ce65745afa7faf46939ee6422/artifacts
+flavors:
+  python_function:
+    cloudpickle_version: 3.1.2
+    code: null
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.pyfunc.model
+    python_model: python_model.pkl
+    python_version: 3.10.2
+    streamable: false
+mlflow_version: 3.8.1
+model_id: m-a19f4a6ce65745afa7faf46939ee6422
+model_size_bytes: 254
+model_uuid: m-a19f4a6ce65745afa7faf46939ee6422
+prompts: null
+run_id: e9f28ed67451426abd761ecd782b4b76
+utc_time_created: '2026-01-19 18:49:06.402190'
