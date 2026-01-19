@@ -28,13 +28,19 @@ graph LR
     E --> F
     F -->|Logs Params/Metrics| G
     G --> H[(./mlruns)]
+```
 
-### FastApi with api /ask
-command is below
-cd C:\project-folder
+### 🚀 FastAPI REST API
+
+The RAG agent is exposed as a production-ready REST API using **FastAPI**, enabling easy integration with web applications, chatbots, or internal tools.
+
+#### ▶️ Run api
+```bash
+cd /path/to/your/project
 uvicorn api:app --host 0.0.0.0 --port 8000 --reload
-
-Test in PowerShell
+```
+#### ▶️ Test api
+```PowerShell
 $response = Invoke-RestMethod -Uri "http://127.0.0.1:8000/ask" `
     -Method Post `
     -Headers @{
@@ -42,7 +48,8 @@ $response = Invoke-RestMethod -Uri "http://127.0.0.1:8000/ask" `
         "Content-Type" = "application/json"
     } `
     -Body (@{
-        question = "What is the maximum operating temperature for the ECU-750?"
+        question = "How much RAM does the ECU-850 have?"
     } | ConvertTo-Json)
 
 $response
+```
