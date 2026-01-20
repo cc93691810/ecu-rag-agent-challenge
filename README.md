@@ -54,10 +54,9 @@ $response = Invoke-RestMethod -Uri "http://127.0.0.1:8000/ask" `
 $response
 ```
 
-#### MLflow in it for learning and test
-
-
-#### Project Structure
+#### MLflow model for learning and test
+Project Structure
+```mermaid
 ecu_agent/
 │
 ├── data/                              # 数据文件
@@ -109,7 +108,7 @@ ecu_agent/
 ├── .gitignore                      # Git忽略文件
 ├── .pylintrc                       # Git忽略文件
 └── .env.example                    # 环境变量示例
-
+```
 
 ### Docker in China
     "registry-mirrors": [
