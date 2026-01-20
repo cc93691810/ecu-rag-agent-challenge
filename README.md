@@ -56,7 +56,7 @@ $response
 
 #### MLflow model for learning and test
 Project Structure
-```mermaid
+```bash
 ecu_agent/
 │
 ├── data/                              # 数据文件
@@ -114,3 +114,12 @@ ecu_agent/
     "registry-mirrors": [
         "https://docker.xuanyuan.me"
     ]
+
+### Future improvement
+1.Try some other LLM instead of my loacl llama3.1:8b
+
+2.Try some other chunking model
+
+3.Learn more about the MLflow and implement on a real project
+
+4.Regarding docker, test more.
