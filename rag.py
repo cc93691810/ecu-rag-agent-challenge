@@ -29,7 +29,6 @@ def get_vectorstore(series: str):
         model_kwargs={"device": "cpu"},
         encode_kwargs={"normalize_embeddings": True}
     )
-    print("embeddings=HuggingFaceEmbeddings() ends")
     #embeddings = HuggingFaceEmbeddings(model_name="BAAI/bge-small-en-v1.5")
     # 🔍 调试：打印第一条文档的 embedding 向量（前10个值）
     if docs:

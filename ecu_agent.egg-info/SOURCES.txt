@@ -1,0 +1,7 @@
+README.md
+pyproject.toml
+ecu_agent.egg-info/PKG-INFO
+ecu_agent.egg-info/SOURCES.txt
+ecu_agent.egg-info/dependency_links.txt
+ecu_agent.egg-info/requires.txt
+ecu_agent.egg-info/top_level.txt

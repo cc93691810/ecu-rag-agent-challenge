@@ -1,0 +1,10 @@
+# MLflow 
+/mlruns/
+/mlartifacts/
+/mlflow/
+/.mlflow/
+
+# env
+/env
+env
+.env

@@ -40,7 +40,7 @@ def route_question(state: ECUAgentState) -> dict:
     """根据问题内容决定查询哪个 ECU 系列"""
     q = state["user_question"].lower()
     user_question = state["user_question"]  # 保持原始大小写用于显示
-    print(f"agent.py: 🔍 Analyzing question: '{user_question}'")
+    print(f"🔍 Analyzing question: '{user_question}'")
 
     # 检测问题中涉及的型号
     has_700 = any(kw in q for kw in ["700", "750", "legacy"])
@@ -57,8 +57,7 @@ def route_question(state: ECUAgentState) -> dict:
     is_comparison = any(keyword in q for keyword in comparison_keywords)
     # 检测通用查询（涉及多个型号）
     general_keywords = [
-        "which.*support", "all.*models", "across.*models", "how many", "what.*models",
-        "which.*can", "support.*ota", "operate.*temperature", "harshest.*condition"
+        "which ", "all ", "models", "How many", "est "
     ]
     is_general = any(keyword in q for keyword in general_keywords)
 

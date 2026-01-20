@@ -7,7 +7,7 @@ This project implements a **Retrieval-Augmented Generation (RAG) agent** for tec
 | Component | Responsibility | Technology |
 |---------|----------------|-----------|
 | **Router** | Analyzes user questions and determines which ECU series (`700`, `800B`, `800P`) to query. Handles comparisons, general queries, and unknown cases. | Rule-based keyword matching with regex |
-| **Retriever** | Fetches relevant technical documentation chunks from ChromaDB vector stores based on the routed series. Supports single-series, multi-series, and "all-series" retrieval. | `ChromaDB` + `bge-small-en-v1.5 Embeddings` (for embedding only; no OpenAI API used in generation) |
+| **Retriever** | Fetches relevant technical documentation chunks from ChromaDB vector stores based on the routed series. Supports single-series, multi-series, and "all-series" retrieval. | `ChromaDB` + `HuggingFace/bge-small-en-v1.5 Embeddings` (for embedding only; no OpenAI API used in generation) |
 | **Generator** | Synthesizes a natural language answer using retrieved context and the user question. Runs entirely **locally**. | `Ollama` + `llama3.1` (via LangChain) |
 | **Orchestrator** | Coordinates the full pipeline: route → retrieve → generate. Wraps execution in an MLflow run for tracking. | Custom Python function (`run_ecu_agent_with_mlflow`) |
 | **MLflow Tracker** | Logs every user interaction as an MLflow Run, capturing input, routing decision, retrieval stats, and output for debugging and analysis. | Local MLflow (`./mlruns`) |
@@ -53,3 +53,4 @@ $response = Invoke-RestMethod -Uri "http://127.0.0.1:8000/ask" `
 
 $response
 ```
+
