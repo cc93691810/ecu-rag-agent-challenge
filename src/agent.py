@@ -9,8 +9,8 @@ import time
 from rag import get_vectorstore
 
 # 设置本地 MLflow 跟踪 URI（默认就是 ./mlruns，可省略）
-mlflow.set_tracking_uri("./mlruns")  # 可选，显式指定
-mlflow.set_experiment("ECU-mlflow-test")
+# mlflow.set_tracking_uri("./mlruns")  # 可选，显式指定
+# mlflow.set_experiment("ECU-mlflow-test")
 
 # ======================
 # 1. 定义 Agent 状态
@@ -258,7 +258,7 @@ def query_ecu_agent(question: str) -> str:
     return result["final_answer"]
 
 # ----------------------------
-# 5. Orchestrator (with MLflow)
+# 5. Orchestrator (with MLflow) test
 # ----------------------------
 def run_ecu_agent_with_mlflow(user_question: str) -> dict:
     """完整执行流程 + MLflow 日志"""

@@ -54,3 +54,64 @@ $response = Invoke-RestMethod -Uri "http://127.0.0.1:8000/ask" `
 $response
 ```
 
+#### MLflow in it for learning and test
+
+
+#### Project Structure
+ecu_agent/
+│
+├── data/                              # 数据文件
+│   ├── ECU-700_Series_Manual.md      # ECU-700系列手册
+│   ├── ECU-800_Series_Base.md        # ECU-800基础版手册
+│   └── ECU-800_Series_Plus.md        # ECU-800增强版手册
+│
+├── scripts/                           # 脚本文件
+│   └── build_model.py                # 构建MLflow模型
+│
+├── src/                              # 源代码
+│   ├── _ _init_ _.py                   # Python包初始化
+│   ├── model.py                      # MLflow模型实现
+│   ├── agent.py                      # 智能体逻辑
+│   ├── rag.py                        # RAG核心功能
+│   ├── config.py                     # 配置管理
+│   ├── utils.py                      # chunking模块
+│   └── tools.py                      # 工具模块
+│
+├── chroma_db/                        # 向量数据库存储
+│   ├── ecu_700/                      # ECU-700向量数据
+│   │   ├── chroma.sqlite3
+│   │   ├── index/
+│   │   └── ...
+│   ├── ecu_800B/                     # ECU-800基础版向量数据
+│   └── ecu_800P/                     # ECU-800增强版向量数据
+│
+├── models/                           # 模型文件
+│   ├── bge-small-en-v1.5/            # 嵌入模型
+│   │   ├── 1_Pooling/
+│   │   ├── config.json
+│   │   ├── pytorch_model.bin
+│   │   └── ...
+│   │
+│   └── test_model/                   # MLflow打包的模型
+│       ├── MLmodel                   # 模型配置文件
+│       ├── conda.yaml               # Conda环境配置
+│       ├── python_env.yaml          # Python环境配置
+│       ├── requirements.txt         # 依赖列表
+│       ├── artifacts/               # 模型工件
+│       │    └── chroma_root -> ../../chroma_db  # 符号链接或引用
+│       └──code/src
+│
+├── pyproject.toml                  # Python依赖
+├── conda.yaml                      # Conda环境配置
+├── README.md                       # 项目说明文档
+├── runMLflowModelServe.bat         # 启动mlflow test_model脚本
+├── dockfile                        # dockerfile
+├── .gitignore                      # Git忽略文件
+├── .pylintrc                       # Git忽略文件
+└── .env.example                    # 环境变量示例
+
+
+### Docker in China
+    "registry-mirrors": [
+        "https://docker.xuanyuan.me"
+    ]
