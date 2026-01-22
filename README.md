@@ -36,7 +36,7 @@ The RAG agent is exposed as a production-ready REST API using **FastAPI**, enabl
 
 #### ▶️ Run api
 ```bash
-cd /path/to/your/project
+cd ecu_agent/src
 uvicorn api:app --host 0.0.0.0 --port 8000 --reload
 ```
 #### ▶️ Test api
