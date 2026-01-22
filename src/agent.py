@@ -44,8 +44,8 @@ def route_question(state: ECUAgentState) -> dict:
 
     # 检测问题中涉及的型号
     has_700 = any(kw in q for kw in ["700", "750", "legacy"])
-    has_800P = any(kw in q for kw in ["800b", "800 p", "plus", "800 plus", "850b", "ECU-850b"])
-    has_800B = any(kw in q for kw in ["800 ", "base", "800 base", "850", "ECU-850"])
+    has_800P = any(kw in q for kw in ["800b", "800b?", "850b", "ECU-850b?"])
+    has_800B = any(kw in q for kw in ["800 ", "base", "800 base", "850 ","850?" "ECU-850"])
     # 统计匹配的系列数
     series_count = sum([has_700, has_800B, has_800P])
 
@@ -257,82 +257,82 @@ def query_ecu_agent(question: str) -> str:
     })
     return result["final_answer"]
 
-# ----------------------------
-# 5. Orchestrator (with MLflow) test
-# ----------------------------
-def run_ecu_agent_with_mlflow(user_question: str) -> dict:
-    """完整执行流程 + MLflow 日志"""
+# # ----------------------------
+# # 5. Orchestrator (with MLflow) test
+# # ----------------------------
+# def run_ecu_agent_with_mlflow(user_question: str) -> dict:
+#     """完整执行流程 + MLflow 日志"""
 
-    # 定义默认返回值
-    final_state = {
-        "user_question": user_question,
-        "series_to_query": "unknown",
-        "retrieved_docs": [],
-        "final_answer": "处理中...",
-        "success": False,
-        "error": None
-    }
+#     # 定义默认返回值
+#     final_state = {
+#         "user_question": user_question,
+#         "series_to_query": "unknown",
+#         "retrieved_docs": [],
+#         "final_answer": "处理中...",
+#         "success": False,
+#         "error": None
+#     }
 
-    try:
-        with mlflow.start_run(run_name=f"Q: {user_question[:40]}..."):
-            # 记录开始时间
-            start_time = time.time()
+#     try:
+#         with mlflow.start_run(run_name=f"Q: {user_question[:40]}..."):
+#             # 记录开始时间
+#             start_time = time.time()
 
-            # 记录参数
-            mlflow.log_param("question", user_question)
-            mlflow.log_param("question_length", len(user_question))
+#             # 记录参数
+#             mlflow.log_param("question", user_question)
+#             mlflow.log_param("question_length", len(user_question))
 
-            # 构建代理
-            app = build_ecu_agent()
+#             # 构建代理
+#             app = build_ecu_agent()
 
-            # 准备初始状态
-            initial_state = {
-                "user_question": user_question,
-                "series_to_query": "unknown",
-                "retrieved_docs": [],
-                "final_answer": ""
-            }
+#             # 准备初始状态
+#             initial_state = {
+#                 "user_question": user_question,
+#                 "series_to_query": "unknown",
+#                 "retrieved_docs": [],
+#                 "final_answer": ""
+#             }
 
-            # 执行代理
-            agent_result = app.invoke(initial_state)  # 使用不同的变量名
+#             # 执行代理
+#             agent_result = app.invoke(initial_state)  # 使用不同的变量名
 
-            # 更新 final_state
-            final_state.update(agent_result)
-            final_state["success"] = True
+#             # 更新 final_state
+#             final_state.update(agent_result)
+#             final_state["success"] = True
 
-            # 计算执行时间
-            execution_time = time.time() - start_time
-            final_state["execution_time"] = execution_time
+#             # 计算执行时间
+#             execution_time = time.time() - start_time
+#             final_state["execution_time"] = execution_time
 
-            # 记录指标
-            mlflow.log_metric("execution_time", execution_time)
-            mlflow.log_metric("docs_retrieved", len(final_state.get("retrieved_docs", [])))
-            mlflow.log_metric("answer_length", len(final_state.get("final_answer", "")))
+#             # 记录指标
+#             mlflow.log_metric("execution_time", execution_time)
+#             mlflow.log_metric("docs_retrieved", len(final_state.get("retrieved_docs", [])))
+#             mlflow.log_metric("answer_length", len(final_state.get("final_answer", "")))
 
-            # 记录模型输入输出
-            mlflow.log_dict({
-                "input": initial_state,
-                "output": final_state
-            }, "input_output.json")
+#             # 记录模型输入输出
+#             mlflow.log_dict({
+#                 "input": initial_state,
+#                 "output": final_state
+#             }, "input_output.json")
 
-            # 记录最终状态
-            mlflow.log_dict(final_state, "final_state.json")
+#             # 记录最终状态
+#             mlflow.log_dict(final_state, "final_state.json")
 
-    except Exception as error:
-        # 错误处理
-        final_state.update({
-            "success": False,
-            "error": str(error),
-            "final_answer": f"抱歉，处理问题时出错: {error}"
-        })
+#     except Exception as error:
+#         # 错误处理
+#         final_state.update({
+#             "success": False,
+#             "error": str(error),
+#             "final_answer": f"抱歉，处理问题时出错: {error}"
+#         })
 
-        # 记录错误
-        if 'mlflow' in locals():
-            mlflow.log_param("error", str(error))
-            mlflow.log_metric("error_occurred", 1)
+#         # 记录错误
+#         if 'mlflow' in locals():
+#             mlflow.log_param("error", str(error))
+#             mlflow.log_metric("error_occurred", 1)
 
-    # 确保总是返回 final_state
-    return final_state
+#     # 确保总是返回 final_state
+#     return final_state
 
 ###################################################
 # def build_ecu_agent_HF():

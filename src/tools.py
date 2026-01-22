@@ -1,7 +1,7 @@
 from pathlib import Path
 import os
 from langchain_core.tools import tool
-from rag import get_vectorstore
+from ECUagent.ecu_agent.src.rag import get_vectorstore
 
 current_dir = Path(__file__).parent  # tools.py所在的目录
 base_dir = current_dir / "data"      # 与tools.py同级的data文件夹

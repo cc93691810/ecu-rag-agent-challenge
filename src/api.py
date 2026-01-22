@@ -9,7 +9,7 @@ import logging
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 # 导入你的 agent 函数
-from agent import query_ecu_agent
+from ECUagent.ecu_agent.src.agent import query_ecu_agent
 
 # 配置日志
 logging.basicConfig(level=logging.INFO)

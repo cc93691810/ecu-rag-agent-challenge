@@ -13,8 +13,10 @@ def load_docs_from_markdown(file_path: str) -> list[Document]:
         series_name = "ECU-800P"
     else:
         series_name = "Unknown"
+    
     docs = []
-    sections = re.split(r'\n##\s+(.+)', content)
+    sections = re.split(r'\n##\s+(.+)', content)    
+
     for i in range(1, len(sections), 2):
         title = sections[i].strip()
         body = sections[i + 1].strip() if i + 1 < len(sections) else ""
@@ -74,5 +76,46 @@ def load_docs_from_markdown(file_path: str) -> list[Document]:
             docs.append(Document(
                 page_content=text,
                 metadata={"source": file_path, "model": title}
-            ))
+            ))        
     return docs
+
+## test
+# from pathlib import Path
+# import os
+# current_file = Path(__file__).resolve()  # rag.py 的绝对路径
+# project_root = current_file.parent.parent  # 项目根目录
+
+# # 加载文档
+# data_dir = project_root / "data"
+# file_map = {
+#     "700": data_dir / "ECU-700_Series_Manual.md",
+#     "800B": data_dir / "ECU-800_Series_Base.md",
+#     "800P": data_dir / "ECU-800_Series_Plus.md"
+# }
+
+# test_series = "800P"  # 可以改为 "700", "800B", "800P"
+# if test_series in file_map:
+#     file_path = str(file_map[test_series])
+#     if os.path.exists(file_path):
+#         print(f"\n🔍 开始测试 {test_series} 系列:")
+#         print(f"文件路径: {file_path}")
+#         docs = load_docs_from_markdown(file_path)
+        
+#         # 可选：查看特定文档的完整内容
+#         if docs:
+#             print(f"\n{'='*80}")
+#             print(f"🔍 查看文档的完整内容:")
+#             print(f"{'='*80}")
+#             for i in range(len(docs)):
+#                 print(f"\n📄 文档 {i+1}/{len(docs)}:")
+#                 print(f"元数据: {docs[i].metadata}")
+#                 print(f"内容:")
+#                 print(f"{'-'*60}")
+#                 print(docs[i].page_content)
+#                 print(f"{'-'*60}")
+#                 print(f"长度: {len(docs[i].page_content)} 字符\n")
+#     else:
+#         print(f"❌ 文件不存在: {file_path}")
+# else:
+#     print(f"❌ 无效的系列标识: {test_series}")
+#     print(f"可用的系列: {list(file_map.keys())}")

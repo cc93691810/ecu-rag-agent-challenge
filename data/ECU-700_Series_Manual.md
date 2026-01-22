@@ -15,7 +15,7 @@ The ECU-750 is built for efficiency and durability in harsh environments.
 | **Processor**           | 32-bit Cortex-M4 @ 120 MHz             |
 | **Memory (RAM)**        | 512 KB SRAM                            |
 | **Storage**             | 2 MB Internal Flash                    |
-**CAN Interface**       | Single Channel, CAN FD compatible up to **1 Mbps** |
+|**CAN Interface**       | Single Channel, CAN FD compatible up to **1 Mbps** |
 | **Operating Voltage**   | 9V - 16V                               |
 | **Power Consumption**   | Typical: 150mA, Peak: 500mA            |
 | **Operating Temperature** | -40°C to **+85°C**                     |
