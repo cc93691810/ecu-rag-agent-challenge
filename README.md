@@ -2,6 +2,16 @@
 
 This project implements a **Retrieval-Augmented Generation (RAG) agent** for technical support of ECU (Embedded Control Unit) product lines. The system intelligently routes user questions to the correct documentation sources, retrieves relevant technical snippets, and generates accurate answers using a local LLM (`llama3.1`). All interactions are automatically logged to **MLflow** for observability and iteration.
 
+Ollama + llama3.1:8b (https://github.com/ollama/ollama/releases)
+
+```bash
+curl -L -o ollama_installer.exe https://ollama.com/download/OllamaSetup.exe
+ollama --version
+ollama pull llama3.1:8b
+ollama list
+curl http://localhost:11434/api/tags
+```
+
 ### 🔧 Core Components
 
 | Component | Responsibility | Technology |

@@ -17,6 +17,11 @@ RUN pip install --no-cache-dir -e .
 # 复制整个项目（包括 models/ 和 data/）
 COPY . .
 
+# 设置环境变量
+ENV PYTHONPATH=/app
+ENV MLFLOW_TRACKING_URI=file:///app/mlruns
+ENV OLLAMA_HOST=http://host.docker.internal:11434
+
 # 暴露端口（MLflow 默认 8080，也可改 5001）
 EXPOSE 8000
 
